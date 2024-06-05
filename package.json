@@ -34,6 +34,7 @@
         "preset": "jest-expo"
     },
     "dependencies": {
+        "@dotlottie/react-player": "^1.6.19",
         "@expo/vector-icons": "^14.0.0",
         "@react-navigation/native": "^6.0.2",
         "expo": "~51.0.9",
@@ -48,6 +49,7 @@
         "expo-system-ui": "~3.0.4",
         "expo-web-browser": "~13.0.3",
         "i18next": "^23.11.5",
+        "lottie-react-native": "^6.7.2",
         "nativewind": "^4.0.1",
         "react": "18.2.0",
         "react-dom": "18.2.0",
