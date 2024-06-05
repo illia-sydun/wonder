@@ -1,5 +1,5 @@
 const translation = {
-    welcome: 'Вітаємо в react-native-template-app',
+    welcome: 'Вітаємо в wonder',
 } as const;
 
 export default translation;

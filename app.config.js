@@ -1,7 +1,8 @@
 module.exports = {
     expo: {
-        name: 'react-native-template-app',
-        slug: 'react-native-template-app',
+        name: 'wonder',
+        slug: 'wonder',
+        owner: 'isydun',
         version: '1.0.0',
         jsEngine: 'hermes',
         orientation: 'portrait',
@@ -15,14 +16,14 @@ module.exports = {
         },
         ios: {
             supportsTablet: true,
-            bundleIdentifier: 'com.isydun.react-native-template-app',
+            bundleIdentifier: 'com.isydun.wonder',
         },
         android: {
             adaptiveIcon: {
                 foregroundImage: './assets/images/adaptive-icon.png',
                 backgroundColor: '#ffffff',
             },
-            package: 'com.isydun.react-native-template-app',
+            package: 'com.isydun.wonder',
         },
         web: {
             bundler: 'metro',
@@ -38,7 +39,7 @@ module.exports = {
                 origin: false,
             },
             eas: {
-                projectId: '7686b84d-bb62-457c-8dd6-441a714d0024',
+                projectId: 'c9d69daf-ce07-492c-a0be-9f8cef09d733',
             },
         },
     },
