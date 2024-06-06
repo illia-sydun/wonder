@@ -30,7 +30,16 @@ module.exports = {
             output: 'static',
             favicon: './assets/images/favicon.png',
         },
-        plugins: ['expo-router', 'expo-localization'],
+        plugins: [
+            'expo-router',
+            'expo-localization',
+            [
+                'expo-local-authentication',
+                {
+                    faceIDPermission: 'Only ony step left. We almost here',
+                },
+            ],
+        ],
         experiments: {
             typedRoutes: true,
         },
