@@ -5,10 +5,9 @@ import useGoToHomePage from '@/hooks/useGoToHomePage';
 
 export default function Page() {
     const goToHomePage = useGoToHomePage();
-
     return (
         <View className='flex-1'>
-            <View className='absolute h-full w-full z-0'>
+            <View className='absolute flex-1 justify-center h-full w-full z-0'>
                 <LottieView
                     resizeMode='cover'
                     source={require('../../assets/animations/hypnosis.json')}
@@ -23,7 +22,7 @@ export default function Page() {
 
             <View className='flex-1 justify-center items-center'>
                 <Animated.View
-                    className='h-[150%] w-[150%] bg-white rounded-full aspect-square z-1'
+                    className='h-[135%] w-auto bg-white rounded-full aspect-square z-1'
                     entering={ZoomIn.duration(1200).withCallback(() =>
                         runOnJS(goToHomePage)(),
                     )}
