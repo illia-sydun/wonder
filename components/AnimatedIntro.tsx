@@ -25,26 +25,26 @@ const config = [
         text: 'Wonder.',
     },
     {
-        backgroundColor: colors.lime['300'],
+        backgroundColor: colors.emerald['800'],
         textColor: colors.pink['500'],
         text: 'Act.',
     },
     {
-        backgroundColor: colors.amber['300'],
-        textColor: colors.cyan['500'],
+        backgroundColor: colors.orange['600'],
+        textColor: colors.blue['800'],
         text: 'Achieve.',
     },
     {
-        backgroundColor: colors.sky['300'],
-        textColor: colors.rose['500'],
+        backgroundColor: colors.slate['800'],
+        textColor: colors.zinc['300'],
         text: 'Repeat.',
     },
 ];
 
-const ballSize = 50;
-const textPadding = 8;
-const delay = 900;
-const duration = 700;
+const ballSize = 47;
+const textPadding = 9;
+const delay = 800;
+const duration = 600;
 
 const styles = StyleSheet.create({
     container: {
