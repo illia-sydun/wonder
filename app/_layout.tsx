@@ -1,75 +1,47 @@
-import { Stack } from 'expo-router';
-import colors from 'tailwindcss/colors';
-import HeaderBackButton from '@/components/HeaderBackButton';
+import { SplashScreen, Stack } from 'expo-router';
 
 import '../translations/i18next';
 import '../global.css';
+import { useFonts } from 'expo-font';
+import { useEffect } from 'react';
+import { ActivityIndicator, View } from 'react-native';
 
-const headerLeft = (color: string) =>
-    function HeaderLeft() {
-        return <HeaderBackButton color={color} />;
-    };
+SplashScreen.preventAutoHideAsync();
 
 function RootNavigation() {
+    const [loaded, error] = useFonts({
+        SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    });
+
+    useEffect(() => {
+        if (error) throw error;
+    }, [error]);
+
+    useEffect(() => {
+        if (loaded) {
+            SplashScreen.hideAsync();
+        }
+    }, [loaded]);
+
+    if (!loaded) {
+        return (
+            <View className='flex-1 justify-center items-center'>
+                <ActivityIndicator />
+            </View>
+        );
+    }
+
     return (
-        <Stack>
+        <Stack
+            screenOptions={{
+                headerShown: false,
+            }}
+        >
+            <Stack.Screen name='index' />
+            <Stack.Screen name='(onboarding)' />
             <Stack.Screen
-                name='index'
+                name='(auth)'
                 options={{
-                    headerTransparent: true,
-                    title: '',
-                }}
-            />
-            <Stack.Screen
-                name='(onboarding)/first'
-                options={{
-                    headerTransparent: true,
-                    title: '',
-                }}
-            />
-            <Stack.Screen
-                name='(onboarding)/second'
-                options={{
-                    headerTransparent: true,
-                    title: '',
-                    headerLeft: headerLeft(colors.green['500']),
-                }}
-            />
-            <Stack.Screen
-                name='(onboarding)/third'
-                options={{
-                    headerTransparent: true,
-                    title: '',
-                    headerLeft: headerLeft(colors.amber['500']),
-                }}
-            />
-            <Stack.Screen
-                name='(onboarding)/fourth'
-                options={{
-                    headerTransparent: true,
-                    title: '',
-                    headerLeft: headerLeft(colors.sky['500']),
-                }}
-            />
-            <Stack.Screen
-                name='(onboarding)/fifth'
-                options={{
-                    headerTransparent: true,
-                    title: '',
-                    headerLeft: headerLeft(colors.red['500']),
-                }}
-            />
-            <Stack.Screen
-                name='(onboarding)/last'
-                options={{
-                    headerShown: false,
-                    animation: 'none',
-                }}
-            />
-            <Stack.Screen
-                name='(home)'
-                options={{
-                    headerShown: false,
                     animation: 'fade',
                 }}
             />

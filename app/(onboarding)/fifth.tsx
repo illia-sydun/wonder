@@ -12,7 +12,7 @@ export default function Page() {
 
     const onBiometricAuthPress = async () => {
         const { success } = await LocalAuthentication.authenticateAsync({
-            promptMessage: `Keep your secrets to yourself`,
+            promptMessage: `Verify your identity`,
             biometricsSecurityLevel: 'strong',
         });
         if (success) {
@@ -40,7 +40,7 @@ export default function Page() {
                 />
             </View>
             <RoundButton
-                title='Verify yourself'
+                title='Identify yourself'
                 onPress={onBiometricAuthPress}
                 buttonClassName='bg-red-500'
                 titleClassName='color-red-50'
