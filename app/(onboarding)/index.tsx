@@ -14,7 +14,6 @@ export default function Page() {
             className='flex-1 items-center justify-around bg-purple-100 pb-16'
             style={{ paddingTop: headerHeight * 1.15 }}
         >
-            {/* <Redirect href='(home)' /> */}
             <Text className='text-center text-5xl font-bold color-purple-500 px-8'>
                 Have you ever wondered?
             </Text>

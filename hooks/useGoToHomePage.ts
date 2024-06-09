@@ -7,14 +7,14 @@ const useGoToHomePage = () => {
 
     const firstMethod = () => {
         rootNavigation.dispatch(StackActions.popToTop());
-        rootNavigation.dispatch(StackActions.replace('(home)'));
+        rootNavigation.dispatch(StackActions.replace('(auth)'));
     };
 
     const secondMethod = () => {
         navigation.reset({
             index: 0,
             // @ts-expect-error weird ts error
-            routes: [{ name: '(home)' }],
+            routes: [{ name: '(auth)' }],
         });
     };
 

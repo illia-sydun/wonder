@@ -1,5 +1,5 @@
-import FirstOnboardingPage from './(onboarding)/last';
+import { Redirect } from 'expo-router';
 
 export default function Page() {
-    return <FirstOnboardingPage />;
+    return <Redirect href='(auth)' />;
 }
