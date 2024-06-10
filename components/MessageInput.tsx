@@ -11,7 +11,11 @@ import Animated, {
 } from 'react-native-reanimated';
 import { BlurView } from 'expo-blur';
 
-export default function MessageInput() {
+type Props = {
+    onSetMessage: (message: string) => void;
+};
+
+export default function MessageInput({ onSetMessage }: Props) {
     const [message, setMessage] = useState('');
     const expandedButtonsState = useSharedValue(0);
 

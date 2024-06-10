@@ -9,7 +9,10 @@ export default function Page() {
                 className='absolute bottom-0 left-0 w-full'
                 behavior='padding'
             >
-                <MessageInput />
+                {messages.length === 0 && (
+                    <MessageIdeas onSelectIdea={() => console.log('m')} />
+                )}
+                <MessageInput onSetMessage={() => console.log('m')} />
             </KeyboardAvoidingView>
         </View>
     );
