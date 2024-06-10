@@ -28,7 +28,12 @@ function CustomDrawerContentHeader() {
 function CustomDrawerContentFooter() {
     return (
         <View className='flex-row items-center align-bottom gap-5'>
-            <View className='h-10 w-10 rounded-xl bg-stone-300 ' />
+            <View className='h-10 w-10 rounded-xl overflow-hidden'>
+                <Image
+                    className='h-full w-full object-contain'
+                    source={{ uri: 'https://galaxies.dev/img/meerkat_2.jpg' }}
+                />
+            </View>
             <Text className='flex-1 font-bold text-lg color-stone-900'>
                 Illia Sydun
             </Text>
