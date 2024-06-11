@@ -1,6 +1,8 @@
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import colors from 'tailwindcss/colors';
+import useIsKeyboardShown from '@react-navigation/bottom-tabs/src/utils/useIsKeyboardShown';
+import { Platform } from 'react-native';
 
 const tabBarIcon = (name: keyof typeof Ionicons.glyphMap) =>
     function TabBarIcon() {
@@ -8,14 +10,21 @@ const tabBarIcon = (name: keyof typeof Ionicons.glyphMap) =>
     };
 
 function RootNavigation() {
+    const isKeyboardShown = useIsKeyboardShown();
+
     return (
         <Tabs
             screenOptions={{
-                // tabBarActiveTintColor: colors.stone['600'],
-                // tabBarInactiveTintColor: colors.stone['400'],
                 tabBarLabelStyle: {
                     fontWeight: '600',
                 },
+                tabBarStyle:
+                    Platform.OS === 'android' && isKeyboardShown
+                        ? {
+                              position: 'absolute',
+                              zIndex: -1,
+                          }
+                        : undefined,
             }}
         >
             <Tabs.Screen
