@@ -13,7 +13,6 @@ import Animated, {
     useSharedValue,
     withDelay,
     withTiming,
-    ZoomIn,
 } from 'react-native-reanimated';
 import colors from 'tailwindcss/colors';
 import { ReText } from 'react-native-redash';
@@ -205,10 +204,7 @@ function AnimatedIntro() {
     );
 
     return (
-        <Animated.View
-            style={[styles.container, containerStyle]}
-            entering={ZoomIn.duration(100)}
-        >
+        <Animated.View style={[styles.container, containerStyle]}>
             <Animated.View style={[styles.ball, ballStyle]} />
             <Animated.View style={[styles.mask, maskStyle]} />
             <ReText
