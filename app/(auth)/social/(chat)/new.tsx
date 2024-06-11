@@ -1,4 +1,4 @@
-import { Image, KeyboardAvoidingView, View } from 'react-native';
+import { Image, KeyboardAvoidingView, Platform, View } from 'react-native';
 import MessageInput from '@/components/MessageInput';
 import MessageIdeas from '@/components/MessageIdeas';
 import Message from '@/types/Message';
@@ -6,6 +6,10 @@ import Role from '@/types/Role';
 import { useState } from 'react';
 import { FlashList } from '@shopify/flash-list';
 import ChatMessage from '@/components/ChatMessage';
+import Animated, {
+    useAnimatedStyle,
+    useSharedValue,
+} from 'react-native-reanimated';
 
 const dummyMessages: Message[] = [
     {
@@ -91,35 +95,62 @@ const dummyMessages: Message[] = [
     },
 ];
 export default function Page() {
-    const [messages, setMessages] = useState<Message[]>(dummyMessages);
+    const [messages, setMessages] = useState<Message[]>([]);
+    const messageInputHeight = useSharedValue(0);
+
+    const style = useAnimatedStyle(() => ({
+        marginTop: messageInputHeight.value,
+    }));
 
     return (
         <View className='flex-1 bg-stone-50'>
-            {messages.length === 0 && (
-                <View className=' absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/4 h-16 w-16 bg-black p-3.5 rounded-full'>
-                    <Image
-                        className='h-full w-full'
-                        source={require('@/assets/images/logo-white.png')}
-                    />
-                </View>
+            {messages.length === 0 ? (
+                <Animated.View
+                    className='flex-1 justify-center items-center'
+                    style={style}
+                >
+                    <View className='h-14 w-14 bg-black p-3.5 rounded-full'>
+                        <Image
+                            className='!h-full !w-full object-contain'
+                            source={require('@/assets/images/logo-white.png')}
+                        />
+                    </View>
+                </Animated.View>
+            ) : (
+                <FlashList
+                    bounces={false}
+                    data={messages}
+                    renderItem={({ item }) => <ChatMessage {...item} />}
+                    estimatedItemSize={100}
+                    contentContainerClassName='pt-3 pb-16'
+                    keyboardDismissMode='on-drag'
+                />
             )}
-            <FlashList
-                bounces={false}
-                data={messages}
-                renderItem={({ item }) => <ChatMessage {...item} />}
-                estimatedItemSize={300}
-                contentContainerClassName='pt-3 pb-16'
-                keyboardDismissMode='on-drag'
-            />
             <KeyboardAvoidingView
-                keyboardVerticalOffset={100}
-                className='absolute bottom-0 left-0 w-full'
-                behavior='padding'
+                keyboardVerticalOffset={Platform.select({
+                    ios: 100,
+                    android: 0,
+                })}
+                className={
+                    messages.length > 0
+                        ? 'absolute bottom-0 left-0 w-full '
+                        : ''
+                }
+                behavior={Platform.select({
+                    ios: 'padding',
+                    android: 'height',
+                })}
             >
                 {messages.length === 0 && (
                     <MessageIdeas onSelectIdea={() => console.log('m')} />
                 )}
-                <MessageInput onSetMessage={() => console.log('m')} />
+                <View
+                    onLayout={(e) => {
+                        messageInputHeight.value = e.nativeEvent.layout.height;
+                    }}
+                >
+                    <MessageInput onSetMessage={() => console.log('m')} />
+                </View>
             </KeyboardAvoidingView>
         </View>
     );
