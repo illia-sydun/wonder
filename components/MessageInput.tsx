@@ -62,7 +62,11 @@ export default function MessageInput({ onSetMessage }: Props) {
     }));
 
     return (
-        <BlurView intensity={90} tint='extraLight'>
+        <BlurView
+            intensity={90}
+            tint='extraLight'
+            experimentalBlurMethod='dimezisBlurView'
+        >
             <View className='flex-row items-center justify-center py-3 px-4'>
                 <View>
                     <Animated.View style={shrinkedButtonsStyle}>
@@ -114,12 +118,16 @@ export default function MessageInput({ onSetMessage }: Props) {
                 </View>
                 <TextInput
                     autoFocus
-                    className='flex-1 border-stone-100 border bg-white rounded-2xl px-4 py-1.5 mx-4'
+                    className='flex-1 content-center border-stone-100 text-stone-900 text-lg border bg-white rounded-2xl px-4 py-1.5 mx-4 max-h-40'
                     placeholder='Message'
+                    placeholderTextColor={colors.stone['300']}
                     value={message}
                     onChangeText={onChangeText}
                     onFocus={() => setExpandedButtonsState(false)}
                     multiline
+                    enterKeyHint='send'
+                    returnKeyType='send'
+                    textAlignVertical='center'
                 />
                 <TouchableOpacity>
                     {message.length > 0 ? (
