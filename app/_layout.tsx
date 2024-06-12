@@ -2,6 +2,8 @@ import { SplashScreen, Stack } from 'expo-router';
 
 import '../translations/i18next';
 import '../global.css';
+import '../env.ts';
+
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
